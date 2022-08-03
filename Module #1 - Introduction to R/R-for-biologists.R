@@ -19,6 +19,10 @@ FALSE
 "Hello world!"
 "This is a string!"
 
+# CHALLENGE QUESTION:
+# Can you create a character that includes quotes?
+# For example, create a character containing the phase: my name is "frank"
+
 
 ## Simple data structure methods
 
@@ -27,13 +31,21 @@ class("Hello world!")
 class(1)
 class(TRUE)
 
+# What is the class of class?
+class(class)
+
 # Structure
 str("Hello world!")
 str(1)
 str(TRUE)
 
-# Challenge: What is the class of str?
+# What is the str of class?
+str(class)
 
+# Challenge: What is the str of the class of "Hello world!"?
+
+# Object size
+object.size("Hello world!")
 
 # Arithmetic
 1 + 1  # add
@@ -54,9 +66,6 @@ TRUE | FALSE  # "|" (or) is TRUE when at least one side is TRUE
 
 # Challenge: what does "TRUE & ! FALSE" evaluate to?
 
-TRUE && FALSE && "Hello world!"
-FALSE || FALSE || "Hello world!"
-
 # Variables
 a <- 1
 b <- 2
@@ -73,8 +82,8 @@ went_to_store_and_bought_cheese <- went_to_store & bought_cheese
 
 # I got up on time or took the bus
 up_on_time <- TRUE
-took_the_bus <- TRUE
-result <- (up_on_time | took_the_bus)
+took_the_bus <- FALSE
+result <- up_on_time | took_the_bus
 result
 
 # Challenge: what is the result of executing "result"?
@@ -84,7 +93,7 @@ result
 flowers <- TRUE
 potatoes <- FALSE
 bread <- FALSE
-x <- ((flowers & potatoes) | ! bread)
+x <- (flowers & potatoes) | bread
 x
 
 # Challenge: what is the result of executing "x"?
@@ -96,8 +105,27 @@ x
 10 > 1  # greater-than
 10 < 100 # less-than
 2 <= 2  # less-than or equal to
-5 >= 3  # greater-than or equal to
+5 >= 13  # greater-than or equal to
 
+## Introduction to Errors
+y
+class()
+
+# What happens if I try to find the class of y without defining y?
+
+# Non-numeric argument to binary operator
+"Hello " * 2
+
+## NA and NULL
+# NA
+NA
+str(NA)
+object.size(NA)
+
+# NULL
+NULL
+str(NULL)
+object.size(NULL)
 
 ## Complex Data Structures
 
@@ -117,12 +145,13 @@ my_vec <- c(1, 2, 3)
 names(my_vec) <- c("Hello", "World", "!")
 my_vec
 # Elements of a vector can be access by index
-my_vec[1]  # Get index 1
-my_vec[1:2]  # Get indices 1->2
+my_vec[3]  # Get element 3
+my_vec[1:2]  # Get elements 1->2
+my_vec[c(1, 3)]  # Get elements 1 and 3
 # Elements of a vector can be accessed by name
 my_vec['Hello']  # Get the element with name "Hello"
-
-# Challenge: What is the result of "'Hello world!'[1]"? And why? 
+# Elements of a vector can be accessed using logical vectors
+my_vec[c(FALSE, TRUE, TRUE)]
 
 # Data Frames
 my_df <- data.frame(
@@ -154,9 +183,11 @@ my_df["Row_1", 2]  # Row 1, column 2
 my_df[1, "Col_3"]  # Row 1, column 3
 my_df["Row_2", "Col_1"]  # Row 2, column 1
 my_df["Row_2",]  # Row 2, all columns
+# You can also use logicals, just like with vectors
+my_df[c(TRUE, FALSE, TRUE),]
 # Data Frame columns can be accessed as a vector using $ notation
 my_df$Col_1
-my_df$Col_2[2]  # Column 2, row 2
+my_df$Col_2[2]  # Column 2, row 2 -- same as my_df["Col_2", 2]
 
 # Challenge: Can you make a dataframe where columns are not all the same length? Try and see.
 
@@ -167,6 +198,7 @@ my_list
 names(my_list) <- c("Elem_1", "Elem_2", "Elem_3", "Elem_4")
 my_list
 # Lists can be accessed by element index
+my_list[2]
 my_list[[2]]  # This returns the data
 # Lists can be accessed by name
 my_list[["Elem_3"]]
@@ -176,9 +208,8 @@ my_list$Elem_4
 
 # Challenge: Can you make a list that contains a list which contains a list that contains a dataframe?
 
-
 # Matrices
-my_mat <- matrix(1:10, nrow = 2, ncol = 5, byrow = TRUE)
+my_mat <- matrix(1:10, nrow = 2, ncol = 5)
 my_mat
 # Matrices can have column and row names
 colnames(my_mat) <- c("Col 1", "Col 2", "Col 3", "Col 4", "Col 5")
@@ -188,7 +219,6 @@ my_mat
 my_mat[1, "Col 1"]  # Row 1, column 1
 my_mat["Row 2", "Col 5"]  # Row 2, column 5
 my_mat[2, 3]  # Row 2, column 3
-
 
 # Factors 
 my_fct <- factor(x = c(90, 80, 70, 60, 0))
