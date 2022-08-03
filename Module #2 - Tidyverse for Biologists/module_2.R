@@ -1,4 +1,4 @@
-#### Week Three Lecture Notes #####
+#### Week Two Lecture Notes #####
 
 ## Getting started with Tidyverse: Readr and Dplyr ##
 
